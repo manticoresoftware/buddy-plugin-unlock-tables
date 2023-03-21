@@ -51,14 +51,7 @@ final class Handler extends BaseHandler {
 				$manticoreClient->sendRequest('UNFREEZE ' . implode(',', $tables));
 			}
 
-			return new TaskResult(
-				[[
-					'total' => sizeof($tables),
-					'error' => '',
-					'warning' => '',
-				],
-				]
-			);
+			return TaskResult::withTotal(sizeof($tables));
 		};
 
 		return Task::createInRuntime(
